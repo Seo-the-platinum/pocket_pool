@@ -18,3 +18,41 @@ model Post {
 
     @@index([name])
 }
+
+model Square {
+    id     String  @id @default(cuid())
+    name   String?
+    number Int
+    pool   Pool    @relation(fields: [poolId], references: [id], onDelete: Cascade)
+    poolId String
+    status String  @default("open")
+    x      Int?
+    y      Int?
+}
+
+model Pool {
+    id      String   @id @default(cuid())
+    size    Int
+    squares Square[]
+    x       Int[]
+    y       Int[]
+}
+
+// model Square {
+//     id      String @id @default(cuid())
+//     number  Int
+//     pool    Pool @relation(fields:[poolId], references: [id])
+//     poolId  String
+//     status  String
+//     name String?
+//     x Int?
+//     y Int?
+// }
+// model Pool {
+//     id      String @id @default(cuid())
+//     userId  String
+//     size    Int
+//     squares Square[]
+//     x Int[]
+//     y Int[]
+// }

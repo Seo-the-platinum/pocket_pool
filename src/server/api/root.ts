@@ -1,4 +1,6 @@
 import { postRouter } from "~/server/api/routers/post";
+import { poolRouter } from "~/server/api/routers/pool";
+import { squareRouter } from "~/server/api/routers/square";
 import { createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -8,6 +10,8 @@ import { createTRPCRouter } from "~/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
   post: postRouter,
+  pool: poolRouter,
+  square: squareRouter,
 });
 
 // export type definition of API

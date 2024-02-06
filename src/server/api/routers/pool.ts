@@ -1,5 +1,4 @@
 import { z } from "zod";
-
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const poolRouter = createTRPCRouter({
@@ -12,7 +11,7 @@ export const poolRouter = createTRPCRouter({
           squares: {
             createMany: {
               data: Array.from({ length: input.size ** 2 }).map((_, index) => ({
-                status: "available",
+                status: "open",
                 number: index + 1,
               })),
             },
@@ -20,4 +19,11 @@ export const poolRouter = createTRPCRouter({
         },
       });
     }),
+  get: publicProcedure.query(({ ctx }) => {
+    return ctx.db.pool.findFirst({
+      include: {
+        squares: true,
+      },
+    });
+  }),
 });

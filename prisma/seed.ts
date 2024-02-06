@@ -7,7 +7,7 @@ const main = async () => {
       squares: {
         createMany: {
           data: Array.from({ length: 100 }).map((_, index) => ({
-            status: "available",
+            status: "open",
             number: index + 1,
           })),
         },
